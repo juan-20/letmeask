@@ -15,7 +15,7 @@ const Home: React.FC = () => {
 
     async function handleCreateRoom() {
         if (!user) {
-            signInWithGoogle();
+            await signInWithGoogle();
         }
         history.push('/rooms/new');
 
