@@ -11,8 +11,9 @@ const NewRoom: React.FC = () => {
     const history = useHistory();
     const { user } = useContext(AuthContext);
 
-    function navigateToNewRoom() {
-
+    function submit() {
+        let span = document.getElementById("span")?.style.display
+        span = 'inline';
     }
 
     return (
@@ -34,7 +35,8 @@ const NewRoom: React.FC = () => {
                             placeholder="Nome da sala"
                         />
 
-                        <Button type="submit">Criar sala</Button>
+                        <Button onClick={submit}>Criar sala</Button>
+                        <span id="span">Funcionalidade ainda não feita</span>
                     </form>
 
                     <p>Quer entrar em uma sala existente
