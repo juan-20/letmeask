@@ -1,9 +1,10 @@
-import React, { useContext } from 'react';
+import React, { FormEvent, useContext, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import illustrationImg from '../assets/images/illustration.svg';
 import logoImg from '../assets/images/logo.svg';
 import Button from '../components/Button';
 import { AuthContext } from '../contexts/AuthContext';
+import { database } from '../services/firebase';
 import '../styles/auth.scss';
 
 
@@ -11,9 +12,25 @@ const NewRoom: React.FC = () => {
     const history = useHistory();
     const { user } = useContext(AuthContext);
 
-    function submit() {
-        let span = document.getElementById("span")?.style.display
-        span = 'inline';
+    const [newRoom, setNewRoom] = useState('');
+
+    async function handleCreateRoom(event: FormEvent) {
+        event.preventDefault();
+
+        console.log(newRoom);
+
+        if (newRoom.trim() === '') {
+            return;
+        }
+
+        const roomRef = database.ref('rooms');
+
+        const firebaseRoom = await roomRef.push({
+            title: newRoom,
+            authorId: user?.id,
+        })
+
+        history.push(`/rooms/${firebaseRoom.key}`)
     }
 
     return (
@@ -29,14 +46,15 @@ const NewRoom: React.FC = () => {
                     <h1>Oi, {user?.name} !</h1>
                     <h2>Criar uma nova sala</h2>
 
-                    <form action="">
+                    <form onSubmit={handleCreateRoom}>
                         <input
                             type="text"
                             placeholder="Nome da sala"
+                            onChange={event => setNewRoom(event.target.value)}
+                            value={newRoom}
                         />
 
-                        <Button onClick={submit}>Criar sala</Button>
-                        <span id="span">Funcionalidade ainda não feita</span>
+                        <Button type="submit">Criar sala</Button>
                     </form>
 
                     <p>Quer entrar em uma sala existente
