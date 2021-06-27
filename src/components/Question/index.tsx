@@ -9,12 +9,21 @@ type QuestionProps = {
   };
   // os botões
   children?: ReactNode;
+  isAnswered?: boolean;
+  isHighlighted?: boolean;
 }
 
 
-export default function Question({ content, author, children, }: QuestionProps) {
+export default function Question({
+  content,
+  author,
+  children,
+  isAnswered = false,
+  isHighlighted = false }: QuestionProps) {
   return (
-    <div className="question">
+    <div className={
+      `question ${isAnswered ? 'awswered' : ''} ${isHighlighted ? 'highlighted' : ''}`}
+    >
       <p>{content}</p>
       <footer>
         <div className="user-info">

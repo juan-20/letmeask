@@ -9,6 +9,24 @@
         margin-top: 8px;
     }
 
+    &.highlighted {
+        background: #f4f0ff;
+        border: 1px solid #835afd;
+
+        footer .user-info span {
+            color: #29292e;
+        }
+    }
+
+    &.awswered {
+        background: #bbb;
+        border: 1px solid #835afd;
+
+        footer .user-info span {
+            color: #29292e;
+        }
+    }
+
     p {
         color: #333;
     }
@@ -34,6 +52,11 @@
                 color: #737380;
                 font-size: 14px;
             }
+        }
+
+        > div {
+            display: flex;
+            gap: 16px;
         }
 
         button {
