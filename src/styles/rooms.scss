@@ -12,6 +12,17 @@
             > img {
                 max-height: 45px;
             }
+
+            > div {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 16px;
+
+                button {
+                    height: 40px;
+                }
+            }
         }
     }
 
@@ -92,6 +103,10 @@
                     cursor: pointer;
                 }
             }
+        }
+
+        .question-list {
+            margin-top: 32px;
         }
     }
 }
